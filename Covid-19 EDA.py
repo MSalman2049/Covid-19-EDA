@@ -65,7 +65,7 @@ covdata
 
 
 # Now that the extra data is removed, we should have a more accurate representation of the new cases in the world
-# We will preparte the data by changing the date to datetime and grouping the sume of cases by each date
+# We will prepare the data by changing the date to datetime and grouping the sum of cases by each date
 covdata2 = covdata.copy()
 covdata2.date = pd.to_datetime(covdata2['date'])
 covdata2 = covdata2.groupby('date').sum()
@@ -83,7 +83,7 @@ covdata2['7 days MA new deaths'] = covdata2['new_deaths'].rolling(7).mean()
 
 # In[29]:
 
-
+# A visaul representation of the new case in the world over the course of the pandemic.
 covdata2[['new_cases', '7 days MA new cases']].plot(figsize = (11, 5), alpha = 0.5)
 plt.title('Timeline new cases in world')
 plt.xlabel('Date')
@@ -94,7 +94,7 @@ plt.show()
 
 # In[28]:
 
-
+# A visaul representation of the new deaths in the world over the course of the pandemic.
 covdata2[['new_deaths', '7 days MA new deaths']].plot(figsize = (11, 5), alpha = 0.5)
 plt.title('Timeline new deaths in world')
 plt.xlabel('Date')
@@ -128,11 +128,13 @@ covCanada['7 days MA new cases'] = covCanada['new_cases'].rolling(7).mean()
 covCanada['7 days MA new deaths'] = 0
 covCanada['7 days MA new deaths'] = covCanada['new_deaths'].rolling(7).mean()
 
+# A visaul representation of the new cases in the Canada over the course of the pandemic.
 covCanada[['new_cases', '7 days MA new cases']].plot(figsize = (10, 5), alpha = 0.5)
 plt.title('Timeline new cases in Canada')
 plt.xlabel('Date')
 plt.ylabel('New cases')
 
+# A visaul representation of the new deaths in the Canada over the course of the pandemic.
 covCanada[['new_deaths', '7 days MA new deaths']].plot(figsize = (10, 5), alpha = 0.5)
 plt.title('Timeline new deaths in Canada')
 plt.xlabel('Date')
@@ -143,7 +145,7 @@ plt.show()
 
 # In[3]:
 
-
+#Creating a new dataframe to map out potential correlations between key statistics in the Covid-19 cases database.
 covdata3 = covdata[['location','total_cases','total_deaths','life_expectancy','female_smokers','male_smokers','total_vaccinations_per_hundred','total_deaths_per_million','handwashing_facilities','hospital_beds_per_thousand','human_development_index']].groupby(by = 'location').max('total_cases')
 covdata3.reset_index(inplace = True)
 covdata3
@@ -151,7 +153,7 @@ covdata3
 
 # In[4]:
 
-
+# Importing plotyly express for interactive visualizations.
 import plotly.express as px
 
 
